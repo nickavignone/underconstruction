@@ -261,7 +261,23 @@ function init() {
 
 init();
 
+function isCanvasSupported(){
+  var elem = document.createElement('canvas');
+  return !!(elem.getContext && elem.getContext('2d'));
+}
+
+if (!isCanvasSupported()){
+  alert('sigh.... your browser doesn\'t support canvas...');
+  $('.link').show();
+}
+
 $(window).resize(resize);
+
+if($(window).width() < 960) {
+  $('canvas').css('display','none');
+  alert('Site Under Construction, Sorry :/');
+  $('.link').show();
+}
 
 createjs.Ticker.setFPS(60);
 createjs.Ticker.addEventListener("tick", tick);
